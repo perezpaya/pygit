@@ -4,7 +4,7 @@
 
 ## Mac Binary
 Use py2app precompiled binary (n00b and recomended):
-[pygit.app](http://docscloud.me/download/50f1ecc20e958f946d000006)
+[pygit.app](http://docscloud.me/download/50f1f73283167b537b000001)
 Compile yours.
 
 ## Windows and Linux binaries
