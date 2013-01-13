@@ -72,7 +72,7 @@ def openPath (p):
 	else:
 		mainlabel.set('Please select a git repository')
 
-# Code
+# Code	
 
 label = Label(window, textvariable=mainlabel)
 label.grid(row=1, column=1)

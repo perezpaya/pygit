@@ -8,7 +8,7 @@
 # Compiling
 ## Mac Binary
 Use py2app precompiled binary (n00b and recomended):
-	[pygit.app](http://docscloud.me/download/50f1f73283167b537b000001)
+[pygit.app](http://docscloud.me/download/50f1f73283167b537b000001)
 ###Compile yours:
 ```
 py2applet --make-setup /path/to/script
@@ -23,6 +23,7 @@ Someone can compile a .exe binary and send the file with a download url in a git
 Pull requests are awesome, please contribute if you want to :P
 
 ## TO DO
++ Add config file support
 + Add other os binaries
 + Add a python git library instead of Terminal bindings
 + Organice code
