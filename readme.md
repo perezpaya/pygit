@@ -11,8 +11,8 @@ Use py2app precompiled binary (n00b and recomended):
 	[pygit.app](http://docscloud.me/download/50f1f73283167b537b000001)
 ###Compile yours:
 ```
-	py2applet --make-setup /path/to/script
-	python setup.py install
+py2applet --make-setup /path/to/script
+python setup.py py2app
 ```
 App will be in dist/myappname.app
 
