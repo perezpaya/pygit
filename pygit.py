@@ -43,6 +43,10 @@ def push ():
 	push = popen('cd '+repoPath.get()+' && git push')
 	write(push.read())
 
+def log ():
+	log = popen('cd ' + repoPath.get() + ' && git log');
+	write(log.read())
+
 def selectPath ():
 	openPath(tkFileDialog.askdirectory(parent=window, title="Select a Git Repository Path"))
 
@@ -65,7 +69,9 @@ def openPath (p):
 			pushButton.configure(background='white')
 			pullButton = Button(window, text="Pull", command=pull, width= 20)
 			pullButton.grid(row=6, column=1)
-			pullButton.configure(background='white')
+			logButton = Button(window, text="Show log", command=log, width= 20)
+			logButton.grid(row=6, column=1)
+			logButton.configure(background='white')
 			select.grid(row=7, column=1)
 		else:
 			mainlabel.set('Path does not exist')
