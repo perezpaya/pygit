@@ -47,6 +47,10 @@ def log ():
 	log = popen('cd ' + repoPath.get() + ' && git log');
 	write(log.read())
 
+def showRemotes ():
+	remotes = popen('cd ' + repoPath.get() + ' && git remote -v')
+	write(remotes.read())
+
 def selectPath ():
 	openPath(tkFileDialog.askdirectory(parent=window, title="Select a Git Repository Path"))
 
@@ -70,8 +74,11 @@ def openPath (p):
 			pullButton = Button(window, text="Pull", command=pull, width= 20)
 			pullButton.grid(row=6, column=1)
 			logButton = Button(window, text="Show log", command=log, width= 20)
-			logButton.grid(row=6, column=1)
+			logButton.grid(row=7, column=1)
 			logButton.configure(background='white')
+			remotesButton = Button(window, text="Show remotes", command=showRemotes, width= 20)
+			remotesButton.grid(row=8, column=1)
+			remotesButton.configure(background='white')
 			select.grid(row=7, column=1)
 		else:
 			mainlabel.set('Path does not exist')
