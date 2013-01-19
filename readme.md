@@ -8,7 +8,7 @@
 # Compiling
 ## Mac Binary
 Use py2app precompiled binary (n00b and recomended):
-[pygit.app](http://docscloud.me/download/50f1fd6383167b537b000002)
+[pygit.app](http://docscloud.me/download/50fa779483167b537b000005)
 ###Compile yours:
 ```
 py2applet --make-setup /path/to/script
