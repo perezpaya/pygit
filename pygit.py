@@ -1,17 +1,24 @@
 #!/usr/bin/env python
 # Imports
 from Tkinter import *
+import tkMessageBox
 import tkFileDialog
+import json
 from os import popen
 from os import path
+import os
 
 # Windows
+
+__dirname = os.path.dirname(os.path.realpath(sys.argv[0]))
+
+config = json.loads(open(__dirname + '/config.json', 'r').read())
 
 window = Tk()
 window.title('PyGit')
 window.minsize(500,500)
 window.maxsize(1000,1000)
-window.configure(background='white')
+window.configure(background=config['background-color'])
 #window.iconify()
 #window.deiconify()
 
@@ -23,8 +30,17 @@ mainlabel = StringVar()
 terminal = StringVar()
 # Functions
 
+def alert(_text):
+	tkMessageBox.showinfo(message=_text)
+
+def yesno(_text, _title):
+	tkMessageBox.askyesno(message=_text, icon='question', title=_title)
+
 def write (output):
 	text.insert(END, output+'\n')
+
+def cleanOutput ():
+	print "Clear"
 
 def pull ():
 	pull = popen('cd '+ repoPath.get() +' && git pull')
@@ -37,7 +53,7 @@ def commit ():
 		commit = popen(('cd '+repoPath.get()+' && git commit -m \"' + msg.get()+'\"'))
 		write(commit.read())
 	else:
-		write("needed msg in commit")
+		alert("You must write a git commit description")
 
 def push ():
 	push = popen('cd '+repoPath.get()+' && git push')
@@ -61,41 +77,32 @@ def openPath (p):
 			mainlabel.set(repoPath.get())
 			commitLabel = Label(window, text="Commit message:")
 			commitLabel.grid(row=2, column=1)
-			commitLabel.configure(background='white')
 			message = Entry(window, textvariable=msg)
 			message.grid(row=3, column=1)
-			message.configure(background='white')
 			commitButton = Button(window, text="Commit", command=commit, width=20)
 			commitButton.grid(row=4, column=1)
-			commitButton.configure(background='white')
 			pushButton = Button(window, text="Push", command=push, width=20)
 			pushButton.grid(row=5, column=1)
-			pushButton.configure(background='white')
 			pullButton = Button(window, text="Pull", command=pull, width= 20)
 			pullButton.grid(row=6, column=1)
 			logButton = Button(window, text="Show log", command=log, width= 20)
 			logButton.grid(row=7, column=1)
-			logButton.configure(background='white')
 			remotesButton = Button(window, text="Show remotes", command=showRemotes, width= 20)
 			remotesButton.grid(row=8, column=1)
-			remotesButton.configure(background='white')
 			select.grid(row=7, column=1)
 		else:
-			mainlabel.set('Path does not exist')
+			alert('Path does not exist')
 	else:
 		mainlabel.set('Please select a git repository')
 
 # Code	
-
 label = Label(window, textvariable=mainlabel)
 label.grid(row=1, column=1)
-label.configure(background='white')
 select = Button(window, text="Select Repository", command=selectPath, width=20)
 select.grid(row=2, column=1)
-select.configure(background='white')
 text = Text()
 text.grid(row=10, column=1)
-text.configure(background='white')
+
 
 # Inits Window Loop
 
